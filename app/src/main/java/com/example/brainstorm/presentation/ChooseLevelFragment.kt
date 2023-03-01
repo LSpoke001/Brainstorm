@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.brainstorm.R
 import com.example.brainstorm.databinding.FragmentChooseLevelBinding
-import com.example.brainstorm.databinding.FragmentWelcomeBinding
 import com.example.brainstorm.domain.entity.Level
 
 
@@ -45,22 +43,14 @@ class ChooseLevelFragment: Fragment() {
     }
 
     private fun launchGameFragment(level: Level) {
-        val arg = Bundle().apply {
-            putParcelable(GameFragment.KEY_LEVEL, level)
-        }
-        findNavController().navigate(R.id.action_chooseLevelFragment_to_gameFragment2, arg)
+        findNavController().navigate(
+            ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment2(level)
+        )
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    companion object{
-
-        const val NAME = "ChooseLevelFragment"
-        fun newInstance(): ChooseLevelFragment{
-            return ChooseLevelFragment()
-        }
     }
 }
